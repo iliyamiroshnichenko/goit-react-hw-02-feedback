@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import Container from './components/Container';
-import Feedback from './components/Feedback';
+import Section from './components/Section';
+import Statistics from './components/Statistics';
+import Feedbackoptions from './components/FeedbackOptions';
+import Notification from './components/Notification';
 
 const App = () => {
   const [stats, setStats] = useState({
@@ -9,26 +12,42 @@ const App = () => {
     bad: 0,
   });
 
+  const { good, neutral, bad } = stats;
+
   const handleIncrementStat = stat =>
-    setStats({ ...stats, [stat]: stats[stat] + 1 });
+    setStats(prState => {
+      return { ...prState, [stat]: stats[stat] + 1 };
+    });
 
   const countTotalFeedback = () => {
     const values = [...Object.values(stats)];
-    const total = values.reduce((acc, value) => acc + value, 0);
-    return total;
+    return values.reduce((acc, value) => acc + value, 0);
   };
 
   const countPositiveFeedbackPercentage = () =>
-    Math.round(((stats.good * 100) / countTotalFeedback()) * 100) / 100;
+    Math.round(((good * 100) / countTotalFeedback()) * 10) / 10;
 
   return (
     <Container>
-      <Feedback
-        stats={stats}
-        onIncrementStat={handleIncrementStat}
-        total={countTotalFeedback()}
-        positivePercentage={countPositiveFeedbackPercentage()}
-      ></Feedback>
+      <Section title="Please leave feedback">
+        <Feedbackoptions
+          options={Object.keys(stats)}
+          onLeaveFeedback={handleIncrementStat}
+        />
+      </Section>
+      <Section title="Statistics">
+        {countTotalFeedback() ? (
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={countTotalFeedback()}
+            positivePercentage={countPositiveFeedbackPercentage()}
+          />
+        ) : (
+          <Notification message="No feedback given"></Notification>
+        )}
+      </Section>
     </Container>
   );
 };

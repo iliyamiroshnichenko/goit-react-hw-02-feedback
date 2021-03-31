@@ -1,14 +1,15 @@
 import PropTypes from 'prop-types';
-import styles from './Feedback.module.css';
+// import styles from './Feedback.module.css';
 
-const Feedback = ({ stats, onIncrementStat, total, positivePercentage }) => {
-  //   const values = [...Object.values(stats)];
-  //   const total = values.reduce((acc, value) => acc + value, 0);
-  //   const positivePercentage =
-  //     Math.round(((stats.good * 100) / total) * 100) / 100;
+const Feedback = ({
+  stats: { good, neutral, bad },
+  onIncrementStat,
+  total,
+  positivePercentage,
+}) => {
   return (
     <>
-      <h1>Please leave feedback</h1>
+      {/* <h1>Please leave feedback</h1> */}
       <ul>
         <li>
           <button type="button" onClick={() => onIncrementStat('good')}>
@@ -26,12 +27,12 @@ const Feedback = ({ stats, onIncrementStat, total, positivePercentage }) => {
           </button>
         </li>
       </ul>
-      <h2>Statistics</h2>
-      <p>Good: {stats.good}</p>
-      <p>Neutral: {stats.neutral}</p>
-      <p>Bad: {stats.bad}</p>
+      {/* <h2>Statistics</h2> */}
+      <p>Good: {good}</p>
+      <p>Neutral: {neutral}</p>
+      <p>Bad: {bad}</p>
       <p>Total: {total}</p>
-      <p>Positive feedback: {positivePercentage || 0}</p>
+      <p>Positive feedback: {positivePercentage || 0}%</p>
     </>
   );
 };
@@ -45,6 +46,3 @@ Feedback.propTypes = {
 };
 
 export default Feedback;
-
-// const handleIncrementStat = stat =>
-//   setStats({ ...stats, [stat]: stats[stat] + 1 });
