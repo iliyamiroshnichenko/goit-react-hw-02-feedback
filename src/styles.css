@@ -1,7 +1,8 @@
 body {
   margin: 0;
   padding: 10px;
-  background-color: #fff;
+  background-color: rgb(163, 161, 161);
+  background: linear-gradient(to left, #cfdef3, #e0eafc);
   color: #2a2a2a;
   line-height: 1.25;
 }

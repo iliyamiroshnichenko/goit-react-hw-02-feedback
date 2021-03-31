@@ -1,0 +1,11 @@
+.basics {
+  font-size: 24px;
+}
+
+.basics li {
+  margin-bottom: 10px;
+}
+
+.basics span {
+  font-weight: 700;
+}

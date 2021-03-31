@@ -1,0 +1,15 @@
+.section {
+  width: 600px;
+  margin: 0 auto;
+  padding: 10px;
+  border: 1px solid lightblue;
+  border-radius: 10px;
+}
+
+.section:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.title {
+  text-align: center;
+}
