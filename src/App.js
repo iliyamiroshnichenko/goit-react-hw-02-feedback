@@ -14,10 +14,11 @@ const App = () => {
 
   const { good, neutral, bad } = stats;
 
-  const handleIncrementStat = stat =>
-    setStats(prState => {
-      return { ...prState, [stat]: stats[stat] + 1 };
-    });
+  const handleIncrementStat = ({ target: { textContent } }) =>
+    setStats(prState => ({
+      ...prState,
+      [textContent]: stats[textContent] + 1,
+    }));
 
   const countTotalFeedback = () => {
     const values = [...Object.values(stats)];
