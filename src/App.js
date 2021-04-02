@@ -21,7 +21,7 @@ const App = () => {
     }));
 
   const countTotalFeedback = () => {
-    const values = [...Object.values(stats)];
+    const values = Object.values(stats);
     return values.reduce((acc, value) => acc + value, 0);
   };
 
@@ -42,8 +42,8 @@ const App = () => {
             good={good}
             neutral={neutral}
             bad={bad}
-            total={countTotalFeedback()}
-            positivePercentage={countPositiveFeedbackPercentage()}
+            total={countTotalFeedback}
+            positivePercentage={countPositiveFeedbackPercentage}
           />
         ) : (
           <Notification message="No feedback given"></Notification>
